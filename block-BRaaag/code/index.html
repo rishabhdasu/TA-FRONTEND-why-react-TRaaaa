@@ -54,11 +54,11 @@
       function createUI(data) {
         let ui = data.map((movie, index) => {
           return (
-            <li>
+            <li key={movie.name}>
               <button id={index} onClick={handleChange}>
                 {movie.watched ? "Watched" : "To Watch"}
               </button>
-              <label for={index}>{movie.name}</label>
+              <label htmlFor={index}>{movie.name}</label>
             </li>
           );
         });
