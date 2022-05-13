@@ -163,11 +163,11 @@ li {
   color: white;
 }
 
-p {
+label {
   margin-left: 1rem;
 }
 
-span {
+button {
   margin-left: 1rem;
   font-weight: 600;
 }

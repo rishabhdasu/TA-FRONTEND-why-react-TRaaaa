@@ -8,18 +8,10 @@ let movies = [
   { name: "Inception", watched: true },
 ];
 
-function handleDelete(event) {
-  let id = event.target.dataset.id;
-  movies.splice(id, 1);
-  createUI(movies);
-  localStorage.setItem(`movies`, JSON.stringify(movies));
-}
-
-function handleToggle(event) {
-  let id = event.target.dataset.id;
+function handleChange(event) {
+  let id = event.target.id;
   movies[id].watched = !movies[id].watched;
   createUI(movies);
-  localStorage.setItem(`movies`, JSON.stringify(movies));
 }
 
 function handleEvent(event) {
@@ -33,23 +25,19 @@ function handleEvent(event) {
   }
 }
 
-function createUI(movie) {
+function createUI(data) {
   root.innerHTML = "";
-  movie.forEach((mov, index) => {
+  data.forEach((movie, index) => {
     let li = document.createElement("li");
     li.classList.add("flex");
-    let checkbox = document.createElement(`input`);
-    checkbox.type = `checkbox`;
-    checkbox.addEventListener(`input`, handleToggle);
-    checkbox.setAttribute(`data-id`, index);
-    checkbox.checked = mov.watched;
-    let p = document.createElement(`p`);
-    p.innerText = mov.name;
-    let span = document.createElement(`span`);
-    span.innerText = `X`;
-    span.addEventListener(`click`, handleDelete);
-    span.setAttribute(`data-id`, index);
-    li.append(checkbox, p, span);
+    let label = document.createElement(`label`);
+    label.for = index;
+    label.innerText = movie.name;
+    let button = document.createElement("button");
+    button.innerText = movie.watched ? "Watched" : "To Watch";
+    button.id = index;
+    button.addEventListener("click", handleChange);
+    li.append(label, button);
     root.append(li);
   });
 }
