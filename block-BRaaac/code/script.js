@@ -13,6 +13,9 @@ function elm(type, attr = {}, ...children) {
   for (let key in attr) {
     if (key.startsWith("data-")) {
       element.setAttribute(key, attr[key]);
+    } else if (key.startsWith("on")) {
+      let eventType = key.replace("on", "").toLowerCase();
+      element.addEventListener(eventType, attr[key]);
     } else {
       element[key] = attr[key];
     }
@@ -49,13 +52,17 @@ function handleEvent(event) {
 function createUI(data) {
   root.innerHTML = "";
   data.forEach((movie, index) => {
+    let btn = elm(
+      "button",
+      { id: index, onClick: handleChange },
+      movie.watched ? "Watched" : "To Watch"
+    );
     let li = elm(
       "li",
       { class: "flex" },
       elm("label", { for: index }, movie.name),
-      elm("button", { id: index, addEventListener: "click" })
+      btn
     );
-
     root.append(li);
   });
 }
