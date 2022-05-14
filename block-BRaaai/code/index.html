@@ -13,11 +13,30 @@
       crossorigin
     ></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/ae3295e5a8.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Card Preview</title>
   </head>
   <body>
+    <h1>Card Preview</h1>
     <main class="root"></main>
     <script type="text/babel">
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
       let cardInfo = {
         title: "City Lights in New York",
         date: new Date("2017-01-26"),
@@ -31,15 +50,29 @@
       };
       let elements = (
         <div>
-          <img src={cardInfo.imageURL} alt="Card Preview" />
+          <div className="thumbnail">
+            <div className="day">
+              <div className="date">{cardInfo.date.getDate()}</div>
+              <div className="month">
+                {monthNames[cardInfo.date.getMonth()].slice(0, 3).toUpperCase()}
+              </div>
+            </div>
+            <img src={cardInfo.imageURL} alt="Card Preview" />
+            <div className="category">Photos</div>
+          </div>
           <article>
-            <h1>{cardInfo.title}</h1>
-            <h2>{cardInfo.subTitle}</h2>
+            <h2>{cardInfo.title}</h2>
+            <h3>{cardInfo.subTitle}</h3>
             <p>{cardInfo.description}</p>
-            <ul>
-              <li>6 mins ago</li>
-              <li>{cardInfo.comments + " comments"}</li>
-            </ul>
+            <footer>
+              <span className="timestamp">
+                <i class="fa fa-clock"></i>6 mins ago
+              </span>
+              <span className="comments">
+                <i class="fa fa-comments"></i>
+                <a href="#">{cardInfo.comments + " comments"}</a>
+              </span>
+            </footer>
           </article>
         </div>
       );
