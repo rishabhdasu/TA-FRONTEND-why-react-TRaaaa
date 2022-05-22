@@ -9,12 +9,12 @@ function App() {
 
   let names = ["Arya", "John", "Bran"];
 
-  // let fruits = [
-  //   { id: "apple", value: "🍎 apple" },
-  //   { id: "orange", value: "🍊 orange" },
-  //   { id: "grape", value: "🍇 grape" },
-  //   { id: "pear", value: "🍐 pear" },
-  // ];
+  let fruits = [
+    { id: "apple", value: "🍎 apple" },
+    { id: "orange", value: "🍊 orange" },
+    { id: "grape", value: "🍇 grape" },
+    { id: "pear", value: "🍐 pear" },
+  ];
 
   return (
     <>
@@ -25,11 +25,11 @@ function App() {
           {name}
         </button>
       ))}
-      {/* {fruits.map((fruit) => (
-        <button onClick={() => alert({ fruit })} key={fruit.id}>
-          {fruit}
+      {fruits.map((fruit) => (
+        <button key={fruit.id} onClick={() => alert(fruit.value)}>
+          {fruit.value}
         </button>
-      ))} */}
+      ))}
     </>
   );
 }
