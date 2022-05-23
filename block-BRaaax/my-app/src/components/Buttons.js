@@ -1,15 +1,17 @@
-function Button() {
+import { buttonSizes, buttonTypes } from "./ButtonInfo";
+function Button(props) {
+  function getStyles() {
+    let { type = buttonTypes.PRIMARY, size = buttonSizes.MEDIUM } = props;
+    return `button button--${type} button--${size}`;
+  }
   return (
-    <>
-      <Button label="Button" />
-      <Button size="small" label="Button" type="secondary" />
-      <Button
-        size="large"
-        label="Button"
-        type="tertiary"
-        onClickHandler={() => alert("You Clicked Me!")}
-      />
-    </>
+    <button
+      onClick={props.onClickHandler}
+      className={getStyles()}
+      disabled={props.disabled}
+    >
+      {props.label || "Button"}
+    </button>
   );
 }
 
